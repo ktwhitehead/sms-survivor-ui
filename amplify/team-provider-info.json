@@ -1,0 +1,20 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-smssurvivor-prod-150333-authRole",
+      "UnauthRoleArn": "arn:aws:iam::156161730041:role/amplify-smssurvivor-prod-150333-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::156161730041:role/amplify-smssurvivor-prod-150333-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-smssurvivor-prod-150333-deployment",
+      "UnauthRoleName": "amplify-smssurvivor-prod-150333-unauthRole",
+      "StackName": "amplify-smssurvivor-prod-150333",
+      "StackId": "arn:aws:cloudformation:us-east-1:156161730041:stack/amplify-smssurvivor-prod-150333/96c1be50-3c3b-11ed-a78d-0e6e728650dd",
+      "AmplifyAppId": "d1zlykrhyhkpy2"
+    },
+    "categories": {
+      "auth": {
+        "smssurvivor558d64b1": {}
+      }
+    }
+  }
+}
