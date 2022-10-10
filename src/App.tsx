@@ -1,35 +1,30 @@
-import { useEffect, useState } from 'react'
-import { Amplify, Auth } from 'aws-amplify'
-import { withAuthenticator } from '@aws-amplify/ui-react'
-import awsconfig from './aws-exports'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Amplify } from 'aws-amplify'
+import { Authenticator } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css'
+
+import OwnerPools from './Pages/OwnerPools'
+import OwnerPool from './Pages/OwnerPool'
+import awsconfig from './aws-exports'
+import AppContextProvider from './Context/AppContextProvider'
 
 Amplify.configure(awsconfig)
 
-const apiUrl = import.meta.env.VITE_API_URL
+function App() {
 
-console.log("KEATON", apiUrl)
-
-function App({ signOut, user }: any) {
-  const [pools, setPools] = useState([])
-
-  const getPools = async () => {
-    console.log(apiUrl, user.attributes)
-    const userPools = await fetch(`${apiUrl}/${user.attributes.sub}/pools`)
-    setPools(userPools)
-  }
-
-  useEffect(() => {
-    getPools()
-  }, [user])
-
-  console.log("DKWE", user)
   return (
-    <div className="App">
-      <h1>Hello {user.attributes.email}</h1>
-      <button onClick={signOut}>Sign out</button>
-    </div>
+    <Authenticator>
+      <BrowserRouter>
+        <AppContextProvider>
+          <Routes>
+            <Route path='/' element={<OwnerPools />} />
+            <Route path='/:ownerId/:poolId' element={<OwnerPool />} />
+          </Routes>
+        </AppContextProvider>
+      </BrowserRouter>
+    </Authenticator>
   )
 }
 
-export default withAuthenticator(App);
+export default App
