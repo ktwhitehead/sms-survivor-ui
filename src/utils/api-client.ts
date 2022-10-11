@@ -14,14 +14,13 @@ const apiClient = {
     return await request.json()
   },
   getPools: async (owner: any) => {
-    console.log('UHHHHH', owner?.appUser?.id)
     const request = await fetch(`${apiUrl}/owner/${owner?.appUser?.id}/pools`, headers(owner))
     return await request.json()
   },
-  createPool: async ({ owner, poolName, poolType }: any) => {
+  createPool: async ({ owner, poolName, poolType, poolLeague }: any) => {
     const request = await fetch(`${apiUrl}/owner/${owner?.appUser?.id}/create-pool`, {
       ...headers(owner),
-      body: JSON.stringify({ poolName, poolType }),
+      body: JSON.stringify({ poolName, poolType, poolLeague }),
     })
     return await request.json()
   },

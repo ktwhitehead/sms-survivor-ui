@@ -5,15 +5,16 @@ import { TiPlus } from 'react-icons/ti'
 import AppContext from '../../Context/AppContext'
 import CreatePoolModal from './CreatePoolModal'
 import apiClient from '../../utils/api-client'
+import PoolSelection from '../../Components/PoolSelection'
 
 const OwnerPools = () => {
-  const { isLoading, setIsLoading, ownerPools, setOwnerPools, signOut, owner } = useContext(AppContext)
+  const { ownerPools, setOwnerPools, signOut, owner }: any = useContext(AppContext)
   const [showModal, setShowModal] = useState(false)
 
   const getOwnerPools = async () => {
     if (!owner?.appUser) return
     const ownerPools = await apiClient.getPools(owner)
-    setOwnerPools(ownerPools)
+    setOwnerPools(ownerPools.pools)
   }
 
   useEffect(() => {
@@ -24,14 +25,27 @@ const OwnerPools = () => {
     <>
       <Flex justifyContent="space-between" marginBottom="1.5em">
         <Heading level={3} onClick={() => signOut()}>
-          Survivor Pools
+          Pools
         </Heading>
         <Button variation="primary" onClick={() => setShowModal(true)}>
           <TiPlus />
           New Pool
         </Button>
       </Flex>
-      {ownerPools?.length === 0 && (
+      {ownerPools &&
+        Object.keys(ownerPools).map((poolLeague) => {
+          return (
+            <>
+              <Heading level={5} marginBottom="1em">
+                {poolLeague}
+              </Heading>
+              {ownerPools[poolLeague].map((pool: any) => {
+                return <PoolSelection name={pool.name} playerCount={10} poolType={pool.type} />
+              })}
+            </>
+          )
+        })}
+      {ownerPools && Object.keys(ownerPools).length === 0 && (
         <Flex>
           <Text margin="0 auto">You have no pools. Click the 'New Pool' button to get started.</Text>
         </Flex>
