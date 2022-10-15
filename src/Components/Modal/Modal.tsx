@@ -4,7 +4,7 @@ import { Text, Heading, Button, Flex } from '@aws-amplify/ui-react'
 
 import { ModalStyled, ModalContent } from './Modal.styled'
 
-const Modal = ({ show, onClose, title, children }) => {
+const Modal = ({ show, onClose, children }) => {
   if (!show) return null
 
   const closeOnEscapeKeyDown = (e) => {

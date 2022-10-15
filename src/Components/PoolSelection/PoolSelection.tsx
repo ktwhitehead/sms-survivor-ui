@@ -3,9 +3,9 @@ import { Text, Flex } from '@aws-amplify/ui-react'
 
 import { PoolLink, PoolInfo } from './PoolSelection.styled'
 
-const PoolSelection = ({ name, playerCount, poolType }: any) => {
+const PoolSelection = ({ name, playerCount, poolType, onClick }: any) => {
   return (
-    <PoolLink>
+    <PoolLink onClick={onClick}>
       <Text margin="auto 0">{name}</Text>
       <Flex>
         <PoolInfo>

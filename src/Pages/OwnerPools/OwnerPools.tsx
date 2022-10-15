@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Heading, Button, Text, Flex, TextField, SelectField } from '@aws-amplify/ui-react'
 import { TiPlus } from 'react-icons/ti'
+import { useNavigate } from 'react-router-dom'
 
 import AppContext from '../../Context/AppContext'
 import CreatePoolModal from './CreatePoolModal'
@@ -9,7 +10,13 @@ import PoolSelection from '../../Components/PoolSelection'
 
 const OwnerPools = () => {
   const { ownerPools, setOwnerPools, signOut, owner }: any = useContext(AppContext)
+  const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
+
+  const navigateToPool = (poolId) => {
+    console.log('KEATON OK', owner)
+    navigate(`${owner?.appUser?.id}/pool/${poolId}`)
+  }
 
   const getOwnerPools = async () => {
     if (!owner?.appUser) return
@@ -40,7 +47,14 @@ const OwnerPools = () => {
                 {poolLeague}
               </Heading>
               {ownerPools[poolLeague].map((pool: any) => {
-                return <PoolSelection name={pool.name} playerCount={10} poolType={pool.type} />
+                return (
+                  <PoolSelection
+                    name={pool.name}
+                    playerCount={10}
+                    poolType={pool.type}
+                    onClick={() => navigateToPool(pool.id)}
+                  />
+                )
               })}
             </>
           )

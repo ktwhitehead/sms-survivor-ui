@@ -20,7 +20,7 @@ const CreatePoolModal = ({ showModal, setShowModal }: any) => {
       return
     }
     const newPool = await apiClient.createPool({ owner, poolName, poolType, poolLeague })
-    navigate(`${owner?.appUser?.id}/${newPool?.id}`)
+    navigate(`${owner?.appUser?.id}/pool/${newPool?.id}`)
   }
 
   return (
