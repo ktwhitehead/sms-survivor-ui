@@ -21,7 +21,7 @@ const OwnerPools = () => {
   const getOwnerPools = async () => {
     if (!owner?.appUser) return
     const ownerPools = await apiClient.getPools(owner)
-    setOwnerPools(ownerPools.pools)
+    setOwnerPools(ownerPools)
   }
 
   useEffect(() => {

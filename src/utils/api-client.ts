@@ -11,22 +11,26 @@ const apiClient = {
       ...headers({ amplifyUser }),
       body: JSON.stringify({ amplifyUserId: amplifyUser?.attributes?.sub }),
     })
-    return await request.json()
+    const { appUser } = await request.json()
+    return appUser
   },
   getPools: async (owner: any) => {
     const request = await fetch(`${apiUrl}/owner/${owner?.appUser?.id}/pools`, headers(owner))
-    return await request.json()
+    const { pools } = await request.json()
+    return pools
   },
   getPool: async (owner: any, poolId: any) => {
     const request = await fetch(`${apiUrl}/${owner?.appUser?.id}/pool/${poolId}`, headers(owner))
-    return await request.json()
+    const { pool } = await request.json()
+    return pool
   },
   createPool: async ({ owner, poolName, poolType, poolLeague }: any) => {
     const request = await fetch(`${apiUrl}/owner/${owner?.appUser?.id}/create-pool`, {
       ...headers(owner),
       body: JSON.stringify({ poolName, poolType, poolLeague }),
     })
-    return await request.json()
+    const { pool } = await request.json()
+    return pool
   },
   invitePlayer: async ({ owner, playerName, playerNumber, poolId }: any) => {
     const ownerName = owner?.amplifyUser?.attributes?.name
@@ -34,7 +38,8 @@ const apiClient = {
       ...headers(owner),
       body: JSON.stringify({ ownerName, playerName, playerNumber }),
     })
-    return await request.json()
+    const { player } = await request.json()
+    return player
   },
 }
 
