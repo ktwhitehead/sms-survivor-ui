@@ -15,7 +15,7 @@ import { GoCheck } from 'react-icons/go'
 
 const TABLE_HEADERS = [
   'Name',
-  '#',
+  'Phone #',
   'Has Paid',
   'Accepted Invite',
   'Week 1',
@@ -50,17 +50,17 @@ const SurvivorTable = ({ data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>Keaton W</TableCell>
-            <TableCell>7656676632</TableCell>
-            <TableCell>
-              <GoCheck />
-            </TableCell>
-            <TableCell>
-              <GoCheck />
-            </TableCell>
-            <TableCell backgroundColor="lightgreen">Lions</TableCell>
-          </TableRow>
+          {data?.players.map((player) => (
+            <TableRow>
+              <TableCell>{player.name}</TableCell>
+              <TableCell>{player.phone_number}</TableCell>
+              <TableCell>{player.has_paid_entry && <GoCheck />}</TableCell>
+              <TableCell>{player.has_accepted_invite && <GoCheck />}</TableCell>
+              {player?.picks?.map((pick) => (
+                <TableCell backgroundColor="lightgreen">Lions</TableCell>
+              ))}
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </ScrollView>

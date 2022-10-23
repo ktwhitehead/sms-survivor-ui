@@ -16,7 +16,6 @@ const OwnerPool = () => {
 
   const getPool = async () => {
     const request = await apiClient.getPool(owner, poolId)
-    console.log('KEATON', request)
     setPool(request)
   }
 

@@ -14,7 +14,6 @@ const OwnerPools = () => {
   const [showModal, setShowModal] = useState(false)
 
   const navigateToPool = (poolId) => {
-    console.log('KEATON OK', owner)
     navigate(`${owner?.appUser?.id}/pool/${poolId}`)
   }
 
