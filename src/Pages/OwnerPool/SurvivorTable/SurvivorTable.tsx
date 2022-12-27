@@ -50,9 +50,9 @@ const SurvivorTable = ({ data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.players.map((player) => (
+          {data?.players?.map((player) => (
             <TableRow>
-              <TableCell>{player.name}</TableCell>
+              <TableCell style={{ whiteSpace: 'nowrap' }}>{player.name}</TableCell>
               <TableCell>{player.phone_number}</TableCell>
               <TableCell>{player.has_paid_entry && <GoCheck />}</TableCell>
               <TableCell>{player.has_accepted_invite && <GoCheck />}</TableCell>

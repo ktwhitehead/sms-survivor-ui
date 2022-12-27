@@ -2,7 +2,10 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 const headers = (owner: any) => ({
   method: 'POST',
-  headers: { Authorization: owner?.amplifyUser?.signInUserSession?.accessToken?.jwtToken },
+  headers: {
+    Authorization: owner?.amplifyUser?.signInUserSession?.accessToken?.jwtToken,
+    'Access-Control-Allow-Origin': '*',
+  },
 })
 
 const apiClient = {

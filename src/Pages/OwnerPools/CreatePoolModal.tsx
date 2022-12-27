@@ -24,7 +24,7 @@ const CreatePoolModal = ({ showModal, setShowModal }: any) => {
   }
 
   return (
-    <Modal title="My Modal" onClose={() => setShowModal(false)} show={showModal}>
+    <Modal onClose={() => setShowModal(false)} show={showModal}>
       <Heading level={5} marginBottom="1.5em">
         Create New Pool
       </Heading>
