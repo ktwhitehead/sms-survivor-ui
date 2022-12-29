@@ -6,6 +6,7 @@ import '@aws-amplify/ui-react/styles.css'
 
 import OwnerPools from './Pages/OwnerPools'
 import OwnerPool from './Pages/OwnerPool'
+import Public from './Pages/Public'
 import awsconfig from './aws-exports'
 import AppContextProvider from './Context/AppContextProvider'
 
@@ -32,16 +33,23 @@ const formFields = {
 
 function App() {
   return (
-    <Authenticator formFields={formFields}>
+    <>
+      <Authenticator formFields={formFields}>
+        <BrowserRouter>
+          <AppContextProvider>
+            <Routes>
+              <Route path="/" element={<OwnerPools />} />
+              <Route path="/:ownerId/pool/:poolId" element={<OwnerPool />} />
+            </Routes>
+          </AppContextProvider>
+        </BrowserRouter>
+      </Authenticator>
       <BrowserRouter>
-        <AppContextProvider>
-          <Routes>
-            <Route path="/" element={<OwnerPools />} />
-            <Route path="/:ownerId/pool/:poolId" element={<OwnerPool />} />
-          </Routes>
-        </AppContextProvider>
+        <Routes>
+          <Route path="/:ownerId/pool/:poolId/public" element={<Public />} />
+        </Routes>
       </BrowserRouter>
-    </Authenticator>
+    </>
   )
 }
 

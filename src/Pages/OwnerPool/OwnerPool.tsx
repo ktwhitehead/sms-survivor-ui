@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Heading, Flex, Text, Button } from '@aws-amplify/ui-react'
+import { Heading, Flex, Button } from '@aws-amplify/ui-react'
 import { TiPlus } from 'react-icons/ti'
 
 import AppContext from '../../Context/AppContext'
@@ -10,7 +10,7 @@ import InvitePlayerModal from './InvitePlayerModal'
 
 const OwnerPool = () => {
   const { owner }: any = useContext(AppContext)
-  const { ownerId, poolId } = useParams()
+  const { poolId } = useParams()
   const [pool, setPool] = useState({})
   const [showModal, setShowModal] = useState(false)
 
@@ -23,11 +23,14 @@ const OwnerPool = () => {
     if (!owner?.appUser?.id) return
     getPool()
   }, [poolId, owner])
-  // return <div>cool, new pool, {JSON.stringify(pool)}</div>
+
   return (
     <>
       <Flex justifyContent="space-between" marginBottom="1.5em">
-        <Heading level={3}>{pool?.name}</Heading>
+        <Flex>
+          <Heading level={3}>{pool?.name}</Heading>
+          <Heading level={6} style={{ margin: 'auto' }}>{`Week ${pool?.currentWeek}`}</Heading>
+        </Flex>
         <Button variation="primary" onClick={() => setShowModal(true)}>
           <TiPlus />
           Invite Player

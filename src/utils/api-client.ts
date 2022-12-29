@@ -3,7 +3,7 @@ const apiUrl = import.meta.env.VITE_API_URL
 const headers = (owner: any) => ({
   method: 'POST',
   headers: {
-    Authorization: owner?.amplifyUser?.signInUserSession?.accessToken?.jwtToken,
+    ...(owner ? { Authorization: owner?.amplifyUser?.signInUserSession?.accessToken?.jwtToken } : {}),
     'Access-Control-Allow-Origin': '*',
   },
 })
@@ -24,6 +24,11 @@ const apiClient = {
   },
   getPool: async (owner: any, poolId: any) => {
     const request = await fetch(`${apiUrl}/${owner?.appUser?.id}/pool/${poolId}`, headers(owner))
+    const { pool } = await request.json()
+    return pool
+  },
+  getPublicPool: async (ownerId: any, poolId: any) => {
+    const request = await fetch(`${apiUrl}/${ownerId}/pool/${poolId}/public`, headers())
     const { pool } = await request.json()
     return pool
   },
