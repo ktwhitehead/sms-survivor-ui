@@ -5,7 +5,7 @@ import { TiPlus } from 'react-icons/ti'
 
 import AppContext from '../../Context/AppContext'
 import apiClient from '../../utils/api-client'
-import SurvivorTable from './SurvivorTable/SurvivorTable'
+import SurvivorTable from './SurvivorTable'
 import InvitePlayerModal from './InvitePlayerModal'
 
 const OwnerPool = () => {
