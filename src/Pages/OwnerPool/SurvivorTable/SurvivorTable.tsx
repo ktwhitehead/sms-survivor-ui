@@ -43,7 +43,7 @@ const SurvivorTable = ({ data, publicView = false }) => {
       <Table highlightOnHover={false}>
         <TableHead>
           <TableRow>
-            {TABLE_HEADERS.filter((h) => publicView && h !== 'Phone #').map((header) => (
+            {TABLE_HEADERS.filter((h) => (publicView ? h !== 'Phone #' : true)).map((header) => (
               <TableCell as="th">{header}</TableCell>
             ))}
           </TableRow>
