@@ -1,16 +1,5 @@
-import React from 'React'
-import {
-  Heading,
-  Flex,
-  Text,
-  Button,
-  Table,
-  TableHead,
-  TableRow,
-  TableBody,
-  TableCell,
-  ScrollView,
-} from '@aws-amplify/ui-react'
+import React from 'react'
+import { Table, TableHead, TableRow, TableBody, TableCell, ScrollView } from '@aws-amplify/ui-react'
 import { GoCheck } from 'react-icons/go'
 import { HiMinus } from 'react-icons/hi'
 

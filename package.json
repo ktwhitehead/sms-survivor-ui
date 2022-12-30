@@ -12,14 +12,12 @@
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^3.5.4",
-    "@rollup/plugin-node-resolve": "^15.0.1",
     "aws-amplify": "^4.3.36",
     "npm": "^8.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.2",
-    "rollup-plugin-visualizer": "^5.9.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
