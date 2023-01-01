@@ -32,18 +32,21 @@ const formFields = {
 }
 
 function App() {
+  const url = window.location.href
   return (
     <>
-      <Authenticator formFields={formFields}>
-        <BrowserRouter>
-          <AppContextProvider>
-            <Routes>
-              <Route path="/" element={<OwnerPools />} />
-              <Route path="/:ownerId/pool/:poolId" element={<OwnerPool />} />
-            </Routes>
-          </AppContextProvider>
-        </BrowserRouter>
-      </Authenticator>
+      {!url.includes('public') && (
+        <Authenticator formFields={formFields}>
+          <BrowserRouter>
+            <AppContextProvider>
+              <Routes>
+                <Route path="/" element={<OwnerPools />} />
+                <Route path="/:ownerId/pool/:poolId" element={<OwnerPool />} />
+              </Routes>
+            </AppContextProvider>
+          </BrowserRouter>
+        </Authenticator>
+      )}
       <BrowserRouter>
         <Routes>
           <Route path="/:ownerId/pool/:poolId/public" element={<Public />} />
